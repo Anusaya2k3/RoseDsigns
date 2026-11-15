@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+    --font-serif: "Fraunces", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  em,
+  .font-editorial {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+}
+
+.font-display {
+  font-family: var(--font-sans);
+  letter-spacing: -0.025em;
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes slow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 70s linear infinite;
+}
+
+@keyframes subtle-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.text-bloom-gradient {
+  background: linear-gradient(90deg, #9b2c4a, #b8893b, #e0728f, #9b2c4a);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 6s linear infinite;
+}
+
+.dark .text-bloom-gradient {
+  background: linear-gradient(90deg, #e0728f, #f2d08a, #ff9ab3, #e0728f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.animate-progress-shimmer {
+  animation: shimmer-text 4.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-spin,
+  .animate-subtle-float,
+  .text-bloom-gradient,
+  .animate-progress-shimmer {
+    animation: none !important;
+  }
+}
